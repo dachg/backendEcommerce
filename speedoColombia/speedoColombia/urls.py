@@ -1,3 +1,6 @@
+from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 """
 URL configuration for speedoColombia project.
 
@@ -16,9 +19,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import path
 from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path("users/",  include("orders.urls")),
 ]
+
+

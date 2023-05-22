@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Departamento(models.Model):
@@ -19,7 +20,7 @@ class CategoriaProducto(models.Model):
 
 class Direccion(models.Model):
     direccion_id = models.IntegerField(primary_key=True)
-    usuario_id = models.IntegerField()
+    usuario_id = models.ForeignKey(User, on_delete= models.CASCADE)
     municipio_id = models.ForeignKey(Municipio, on_delete=models.CASCADE)
     direccion = models.CharField(max_length=200)
     direccion_actual = models.BooleanField(default=False)
@@ -33,7 +34,7 @@ class Producto(models.Model):
 
 class Factura(models.Model):
     factura_id = models.IntegerField(primary_key=True)
-    usuario_id = models.IntegerField()
+    usuario_id = models.ForeignKey(User, on_delete= models.CASCADE)
     direcion_id = models.ForeignKey(Direccion, on_delete=models.CASCADE)
     fecha_factura = models.DateField()
     valor_total = models.IntegerField()
