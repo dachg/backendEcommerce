@@ -6,17 +6,23 @@ class Departamento(models.Model):
     departamento_id = models.IntegerField(primary_key=True)
     code = models.IntegerField()
     name = models.CharField(max_length=200)
+    def __str__(self):
+        return  self.name
 
 class Municipio(models.Model):
     municipio_id = models.IntegerField(primary_key=True)
     departamento_id = models.ForeignKey(Departamento, on_delete=models.CASCADE)
     code = models.IntegerField()
     name = models.CharField(max_length=200)
+    def __str__(self):
+        return  self.name
 
 class CategoriaProducto(models.Model):
     categoria_producto_id = models.IntegerField(primary_key=True)
     categoria_padre_id  = models.IntegerField()
     name = models.CharField(max_length=200)
+    def __str__(self):
+        return  self.name
 
 class Direccion(models.Model):
     direccion_id = models.IntegerField(primary_key=True)
@@ -24,6 +30,8 @@ class Direccion(models.Model):
     municipio_id = models.ForeignKey(Municipio, on_delete=models.CASCADE)
     direccion = models.CharField(max_length=200)
     direccion_actual = models.BooleanField(default=False)
+    def __str__(self):
+        return  self.direccion
 
 class Producto(models.Model):
     producto_id = models.IntegerField(primary_key=True)
@@ -31,6 +39,8 @@ class Producto(models.Model):
     orden_date = models.DateField()
     nombre = models.CharField(max_length=200)
     precio = models.FloatField()    
+    def __str__(self):
+        return  self.nombre
 
 class Factura(models.Model):
     factura_id = models.IntegerField(primary_key=True)
