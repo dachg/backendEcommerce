@@ -1,6 +1,9 @@
 from django.views.generic import ListView
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.conf.urls.static import static
+from django.conf import settings
+
 """
 URL configuration for speedoColombia project.
 
@@ -26,6 +29,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path("users/",  include("orders.urls")),
-]
-
-
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
