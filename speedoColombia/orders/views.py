@@ -5,7 +5,8 @@ from rest_framework.generics import CreateAPIView,RetrieveUpdateAPIView,UpdateAP
 from .serializers import ProductoSerializer
 from .serializers import CategoriaProductoSerializer
 from .serializers import FacturaSerializer
-from .models import Producto, CategoriaProducto, Factura
+from .serializers import BannerImages
+from .models import Producto, CategoriaProducto, Factura, Imagen_banner
 
 # Create your views here.
 class UserListView(ListView):
@@ -16,7 +17,7 @@ class UserListView(ListView):
 #@permission_classes((AllowAny, ))
 class ProductListApi(ListAPIView):
     serializer_class = ProductoSerializer
-    queryset = Producto.objects.filter(precio__gte=200000)
+    queryset = Producto.objects.all()
 
 
 #@permission_classes((AllowAny, ))
@@ -31,3 +32,7 @@ class FacturaCreateApi(CreateAPIView):
 class ProductCreateApi(CreateAPIView):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+
+class BannerActiveApi(ListAPIView):
+    queryset = Imagen_banner.objects.filter(estado=True)
+    serializer_class = BannerImages
