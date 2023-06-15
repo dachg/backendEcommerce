@@ -39,6 +39,8 @@ class Producto(models.Model):
     orden_date = models.DateField()
     nombre = models.CharField(max_length=200)
     precio = models.FloatField()    
+    descripcion_corta = models.CharField(max_length=100)
+    descripcion_larga = models.CharField(max_length=200)
     imagen = models.ImageField(upload_to='imagesPropducts/', null=True)
     def __str__(self):
         return  self.nombre
@@ -62,3 +64,11 @@ class DetalleFactura(models.Model):
     inventario_producto_id = models.ForeignKey(InventarioProducto, on_delete=models.CASCADE)
     valor_unitario = models.IntegerField
     unidades_vendidas = models.IntegerField
+
+class Imagen_producto(models.Model):
+    producto_id = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='imagesPropducts/', null=True)
+
+class Imagen_banner(models.Model):
+    imagen = models.ImageField(upload_to='imagesPropducts/', null=True)
+    estado = models.BooleanField(default=True)

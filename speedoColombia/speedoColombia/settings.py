@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django.contrib.sites',  # para allauth
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'speedoColombia.urls'
@@ -144,3 +146,10 @@ ACCOUNT_USERNAME_REQUIRED = False
 #Importación de medias
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+#CORS permitidos en la aplicación
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:4200',
+    'http://localhost',
+]
